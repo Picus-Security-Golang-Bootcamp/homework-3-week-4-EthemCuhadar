@@ -1,6 +1,9 @@
 package models
 
+import "gorm.io/gorm"
+
 type Book struct {
+	gorm.Model
 	ID          string `gorm:"primaryKey;unique"`
 	Name        string `gorm:"size:50;not null"`
 	PageNumber  int
@@ -12,6 +15,7 @@ type Book struct {
 }
 
 type Author struct {
+	gorm.Model
 	Name string `gorm:"size:50;not null"`
 	ID   string `gorm:"size:4;not null"`
 }

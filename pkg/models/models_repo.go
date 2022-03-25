@@ -29,10 +29,26 @@ func (br *BookRepository) InsertSampleData(list []Book) {
 	}
 }
 
+// METHODS FOR BOOK MODEL
+
+// List Methods
+
 func (br *BookRepository) ListAllBooks() []Book {
 	var books []Book
 	br.db.Find(&books)
 	return books
+}
+
+func (br *BookRepository) ListAllBooksByAlphabeticOrder() ([]Book, error) {
+	var books []Book
+	result := br.db.Order("Name").Find(&books)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, result.Error
+	}
+	for _, book := range books {
+		fmt.Println(book.Name)
+	}
+	return books, nil
 }
 
 func (br *BookRepository) ListBookByDescendingPriceOrder() ([]Book, error) {
@@ -49,7 +65,7 @@ func (br *BookRepository) ListBookByDescendingPriceOrder() ([]Book, error) {
 
 func (br *BookRepository) ListBookByAscendingPriceOrder() ([]Book, error) {
 	var books []Book
-	result := br.db.Order("Price").Find(&books)
+	result := br.db.Order("Price").Order("Name").Find(&books)
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
 		return nil, result.Error
 	}
@@ -83,6 +99,20 @@ func (br *BookRepository) ListBookByDescendingStockNumberOrder() ([]Book, error)
 	return books, nil
 }
 
+// Get Methods
+
+func (br *BookRepository) GetBookByName(bookName string) ([]Book, error) {
+	var books []Book
+	result := br.db.Where("name LIKE ?", "%"+bookName+"%").Find(&books)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, result.Error
+	}
+	for _, book := range books {
+		fmt.Println(book.Name)
+	}
+	return books, nil
+}
+
 func (br *BookRepository) GetBookByID(id string) (*Book, error) {
 	var book Book
 	result := br.db.First(&book, id)
@@ -95,12 +125,12 @@ func (br *BookRepository) GetBookByID(id string) (*Book, error) {
 
 func (br *BookRepository) GetBookByAuthorName(authorName string) ([]Book, error) {
 	var books []Book
-	result := br.db.Where(&Book{AuthorName: authorName}).Find(&books)
+	result := br.db.Where("name LIKE ?", "%"+authorName+"%").Find(&books)
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
 		return nil, result.Error
 	}
 	for _, book := range books {
-		fmt.Println(book.Name, book.Author)
+		fmt.Println(book.Name)
 	}
 	return books, nil
 }

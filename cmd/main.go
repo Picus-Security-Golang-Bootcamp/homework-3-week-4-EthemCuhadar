@@ -25,13 +25,14 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	// fmt.Println(booklist)
 	fmt.Println("Book Count: ", len(booklist))
 	bookRepo := models.NewBookRepository(db)
 	bookRepo.Migrations()
 	bookRepo.InsertSampleData(booklist)
 
-	fmt.Println("Book list")
 	fmt.Println(bookRepo.ListAllBooks())
-	fmt.Println("id: 1001")
 	bookRepo.GetBookByID("1003")
+	fmt.Println(bookRepo.GetBookByAuthorName("J.R.R. Tolkein"))
+	fmt.Println(bookRepo.GetBookByISBN("9142437239"))
 }

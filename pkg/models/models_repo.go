@@ -62,7 +62,7 @@ func (br *BookRepository) GetBookByISBN(isbn string) (*Book, error) {
 	return &book, nil
 }
 
-func (br *BookRepository) GetBookByDescendingOrder() ([]Book, error) {
+func (br *BookRepository) GetBookByDescendingPriceOrder() ([]Book, error) {
 	var books []Book
 	result := br.db.Order("Price desc").Order("Name").Find(&books)
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
@@ -74,7 +74,7 @@ func (br *BookRepository) GetBookByDescendingOrder() ([]Book, error) {
 	return books, nil
 }
 
-func (br *BookRepository) GetBookByAscendingOrder() ([]Book, error) {
+func (br *BookRepository) GetBookByAscendingPriceOrder() ([]Book, error) {
 	var books []Book
 	result := br.db.Order("Price").Find(&books)
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {

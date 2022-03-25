@@ -11,8 +11,8 @@ import (
 )
 
 // NewPsqlDB will take database connection information
-// from environment file and creates a local database
-// server on Postgresql. After that, it will connect to database.
+// from environment file and connects to local postgres
+// database server.
 func NewPsqlDB(envFile string) (*gorm.DB, error) {
 	err := godotenv.Load(envFile)
 	if err != nil {

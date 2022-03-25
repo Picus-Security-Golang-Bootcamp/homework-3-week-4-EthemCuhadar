@@ -200,3 +200,74 @@ func (br *BookRepository) GetBookWithPriceInterval(pMin, pMax int) ([]Book, erro
 	}
 	return books, nil
 }
+
+func (br *BookRepository) Create(book Book) error {
+	result := br.db.Create(book)
+	if result.Error != nil {
+		return result.Error
+	}
+	return nil
+}
+
+func (br *BookRepository) Update(book Book) error {
+	result := br.db.Save(book)
+
+	if result.Error != nil {
+		return result.Error
+	}
+	return nil
+}
+
+func (br *BookRepository) Delete(book Book) error {
+	result := br.db.Delete(book)
+
+	if result.Error != nil {
+		return result.Error
+	}
+
+	return nil
+}
+
+func (br *BookRepository) DeleteBookById(id string) error {
+	result := br.db.Delete(&Book{}, id)
+
+	if result.Error != nil {
+		return result.Error
+	}
+
+	return nil
+}
+
+func (br *BookRepository) DeleteBookByName(name string) error {
+	result := br.db.Delete(&Book{}, name)
+
+	if result.Error != nil {
+		return result.Error
+	}
+
+	return nil
+}
+
+func (br *BookRepository) DeleteBookByISBN(isbn string) error {
+	result := br.db.Delete(&Book{}, isbn)
+
+	if result.Error != nil {
+		return result.Error
+	}
+
+	return nil
+}
+
+func (br *BookRepository) DeleteBookByStockCode(sc string) error {
+	result := br.db.Delete(&Book{}, sc)
+
+	if result.Error != nil {
+		return result.Error
+	}
+
+	return nil
+}
+
+// METHODS FOR AUTHOR MODEL
+
+// List Models

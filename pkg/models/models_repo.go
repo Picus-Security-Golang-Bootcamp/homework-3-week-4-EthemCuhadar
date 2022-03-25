@@ -168,3 +168,35 @@ func (br *BookRepository) GetBookByMinPriceLimit(pMin float64) ([]Book, error) {
 	}
 	return books, nil
 }
+
+func (br *BookRepository) GetBookWithMinPrice() (*Book, error) {
+	var book Book
+	result := br.db.Order("price asc").Find(&book)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, result.Error
+	}
+	fmt.Println(book.Name, book.Price)
+	return &book, nil
+}
+
+func (br *BookRepository) GetBookWithMaxPrice() (*Book, error) {
+	var book Book
+	result := br.db.Order("price desc").Find(&book)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, result.Error
+	}
+	fmt.Println(book.Name, book.Price)
+	return &book, nil
+}
+
+func (br *BookRepository) GetBookWithPriceInterval(pMin, pMax int) ([]Book, error) {
+	var books []Book
+	result := br.db.Where("price < ? AND price > ?", pMax, pMin).Find(&books)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, result.Error
+	}
+	for _, book := range books {
+		fmt.Println(book.Name, book.Price)
+	}
+	return books, nil
+}

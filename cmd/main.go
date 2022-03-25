@@ -37,4 +37,7 @@ func main() {
 	// fmt.Println(bookRepo.GetBookByISBN("9142437239"))
 	// bookRepo.GetBookByID("1005")
 	bookRepo.GetBookByMinPriceLimit(15.00)
+	bookRepo.GetBookWithMinPrice()
+	bookRepo.GetBookWithMaxPrice()
+	bookRepo.GetBookWithPriceInterval(10.00, 15.00)
 }

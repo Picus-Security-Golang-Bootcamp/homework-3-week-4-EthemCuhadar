@@ -1,0 +1,9 @@
+ID,Name,PageNumber,StockNumber,Price,StockCode,ISBN,AuthorName,AuthorID
+1001,Don Quiote,1072,11.69,543891,9142437239,Miguel De Cervantes Saavedra,2653
+1002,One Hundred Years of Solitude,417,15,14.50,394516,2060883286,Gabriel Garcia Marquez,1158
+1003,War adn Peace,1296,12,15.69,163944,1400079985,Leo Tolstoy,3629
+1004,Nineteen eighty four,328,13,7.48,660319,9780451524935,George Orwell,9856
+1005,Madame Bovary,384,9,14.49,940133,6451418506,Gustave Flaubert,7451
+1006,Lord of the Rings: The Fellowship of the Ring,569,13,20.19,1215539945,J.R.R. Tolkein,3362
+1007,Lord of the Rings: The Two Towers,496,11,18.39,4469236945,J.R.R. Tolkein,3362
+1008,Lord of the Rings: The Return of the King,679,16,23.64,942615398,J.R.R. Tolkein,3362

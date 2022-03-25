@@ -11,14 +11,15 @@ func NewBookRepository(db *gorm.DB) *BookRepository {
 }
 
 func (br *BookRepository) Migrations() {
-	br.db.AutoMigrate(&Book{})
-	br.db.AutoMigrate(&Author{})
+	bookPrototype := &Book{}
+	authorPrototype := &Author{}
+	br.db.AutoMigrate(bookPrototype, authorPrototype)
 }
 
 func (br *BookRepository) InsertSampleData(list []Book) {
 	for _, book := range list {
 		br.db.Where(Book{ID: book.ID}).
-			Attrs(Book{ID: book.ID, Name: book.Name, PageNumber: book.PageNumber, StockNumber: book.StockNumber, Price: book.Price, StockCode: book.StockCode, ISBN: book.ISBN, Author: book.Author}).
+			Attrs(Book{ID: book.ID, Name: book.Name}).
 			FirstOrCreate(&book)
 	}
 }

@@ -8,20 +8,20 @@ import (
 
 type Book struct {
 	gorm.Model
-	ID          string
-	Name        string
+	ID          string `gorm:"primary_key; unique"`
+	Name        string `gorm:"size:50;not null"`
 	PageNumber  int
 	StockNumber int
 	Price       float64
 	StockCode   string
 	ISBN        string
 	AuthorName  string
-	Author      Author `gorm:"foreignKey:AuthorName"`
+	Author      *Author `gorm:"foreignKey:AuthorName"`
 }
 
 type Author struct {
 	gorm.Model
-	Name string
+	Name string `gorm:"primary_key;unique"`
 	ID   string
 }
 

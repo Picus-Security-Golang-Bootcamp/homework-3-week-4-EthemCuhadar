@@ -43,7 +43,7 @@ func ReadCSV(filename string) (models.BookList, error) {
 			fmt.Println("Stock Number error")
 		}
 		// author declared from csv file
-		author := models.Author{Name: line[7], ID: line[8]}
+		author := &models.Author{Name: line[7], ID: line[8]}
 
 		booklist = append(booklist, models.Book{
 			ID:          line[0],

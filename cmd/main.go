@@ -29,4 +29,9 @@ func main() {
 	bookRepo := models.NewBookRepository(db)
 	bookRepo.Migrations()
 	bookRepo.InsertSampleData(booklist)
+
+	fmt.Println("Book list")
+	fmt.Println(bookRepo.ListAllBooks())
+	fmt.Println("id: 1001")
+	bookRepo.GetBookByID("1003")
 }

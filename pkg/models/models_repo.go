@@ -2,6 +2,7 @@ package models
 
 import (
 	"errors"
+	"fmt"
 
 	"gorm.io/gorm"
 )
@@ -59,4 +60,28 @@ func (br *BookRepository) GetBookByISBN(isbn string) (*Book, error) {
 		return nil, result.Error
 	}
 	return &book, nil
+}
+
+func (br *BookRepository) GetBookByDescendingOrder() ([]Book, error) {
+	var books []Book
+	result := br.db.Order("Price desc").Order("Name").Find(&books)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, result.Error
+	}
+	for _, book := range books {
+		fmt.Println(book.Name, book.Price, "$")
+	}
+	return books, nil
+}
+
+func (br *BookRepository) GetBookByAscendingOrder() ([]Book, error) {
+	var books []Book
+	result := br.db.Order("Price").Find(&books)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, result.Error
+	}
+	for _, book := range books {
+		fmt.Println(book.Name, book.Price, "$")
+	}
+	return books, nil
 }

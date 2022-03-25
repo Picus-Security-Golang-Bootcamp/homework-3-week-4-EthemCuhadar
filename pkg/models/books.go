@@ -15,3 +15,5 @@ type Author struct {
 	Name string `gorm:"size:50;not null"`
 	ID   string `gorm:"size:4;not null"`
 }
+
+type BookList []Book

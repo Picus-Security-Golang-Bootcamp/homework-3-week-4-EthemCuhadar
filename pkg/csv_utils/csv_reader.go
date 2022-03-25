@@ -53,6 +53,7 @@ func ReadCSV(filename string) (models.BookList, error) {
 			Price:       price,
 			StockCode:   line[5],
 			ISBN:        line[6],
+			AuthorName:  line[7],
 			Author:      author,
 		})
 	}

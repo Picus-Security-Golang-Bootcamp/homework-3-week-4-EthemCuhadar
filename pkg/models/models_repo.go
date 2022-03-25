@@ -35,6 +35,54 @@ func (br *BookRepository) ListAllBooks() []Book {
 	return books
 }
 
+func (br *BookRepository) ListBookByDescendingPriceOrder() ([]Book, error) {
+	var books []Book
+	result := br.db.Order("Price desc").Order("Name").Find(&books)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, result.Error
+	}
+	for _, book := range books {
+		fmt.Println(book.Name, book.Price, "$")
+	}
+	return books, nil
+}
+
+func (br *BookRepository) ListBookByAscendingPriceOrder() ([]Book, error) {
+	var books []Book
+	result := br.db.Order("Price").Find(&books)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, result.Error
+	}
+	for _, book := range books {
+		fmt.Println(book.Name, book.Price, "$")
+	}
+	return books, nil
+}
+
+func (br *BookRepository) ListBookByAscendingStockNumberOrder() ([]Book, error) {
+	var books []Book
+	result := br.db.Order("stock_number").Find(&books)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, result.Error
+	}
+	for _, book := range books {
+		fmt.Println(book.Name, book.StockNumber)
+	}
+	return books, nil
+}
+
+func (br *BookRepository) ListBookByDescendingStockNumberOrder() ([]Book, error) {
+	var books []Book
+	result := br.db.Order("stock_number desc").Find(&books)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, result.Error
+	}
+	for _, book := range books {
+		fmt.Println(book.Name, book.StockNumber)
+	}
+	return books, nil
+}
+
 func (br *BookRepository) GetBookByID(id string) (*Book, error) {
 	var book Book
 	result := br.db.First(&book, id)
@@ -65,52 +113,4 @@ func (br *BookRepository) GetBookByISBN(isbn string) (*Book, error) {
 	}
 	fmt.Println(book.Name, book.ISBN)
 	return &book, nil
-}
-
-func (br *BookRepository) GetBookByDescendingPriceOrder() ([]Book, error) {
-	var books []Book
-	result := br.db.Order("Price desc").Order("Name").Find(&books)
-	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		return nil, result.Error
-	}
-	for _, book := range books {
-		fmt.Println(book.Name, book.Price, "$")
-	}
-	return books, nil
-}
-
-func (br *BookRepository) GetBookByAscendingPriceOrder() ([]Book, error) {
-	var books []Book
-	result := br.db.Order("Price").Find(&books)
-	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		return nil, result.Error
-	}
-	for _, book := range books {
-		fmt.Println(book.Name, book.Price, "$")
-	}
-	return books, nil
-}
-
-func (br *BookRepository) GetBookByAscendingStockNumberOrder() ([]Book, error) {
-	var books []Book
-	result := br.db.Order("stock_number").Find(&books)
-	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		return nil, result.Error
-	}
-	for _, book := range books {
-		fmt.Println(book.Name, book.StockNumber)
-	}
-	return books, nil
-}
-
-func (br *BookRepository) GetBookByDescendingStockNumberOrder() ([]Book, error) {
-	var books []Book
-	result := br.db.Order("stock_number desc").Find(&books)
-	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		return nil, result.Error
-	}
-	for _, book := range books {
-		fmt.Println(book.Name, book.StockNumber)
-	}
-	return books, nil
 }

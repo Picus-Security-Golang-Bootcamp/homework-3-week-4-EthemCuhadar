@@ -6,6 +6,7 @@ import (
 
 	"github.com/Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar/pkg/csv_utils"
 	"github.com/Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar/pkg/database"
+	"github.com/Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar/pkg/models"
 )
 
 var envFile = "../.env"
@@ -25,4 +26,7 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Println("Book Count: ", len(booklist))
+	bookRepo := models.NewBookRepository(db)
+	bookRepo.Migrations()
+	bookRepo.InsertSampleData(booklist)
 }

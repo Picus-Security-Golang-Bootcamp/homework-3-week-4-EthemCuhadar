@@ -5,16 +5,12 @@ import (
 	"log"
 
 	"github.com/Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar/pkg/database"
-	"github.com/joho/godotenv"
 )
 
-func main() {
-	err := godotenv.Load("../.env")
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+var envFile = "../.env"
 
-	db, err := database.NewPsqlDB()
+func main() {
+	db, err := database.NewPsqlDB(envFile)
 	if err != nil {
 		log.Fatal("Postgres cannot init: ", err)
 	}

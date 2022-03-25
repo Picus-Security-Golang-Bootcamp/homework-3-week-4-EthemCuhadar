@@ -35,5 +35,5 @@ func main() {
 	// bookRepo.GetBookByID("1003")
 	// fmt.Println(bookRepo.GetBookByAuthorName("J.R.R. Tolkein"))
 	// fmt.Println(bookRepo.GetBookByISBN("9142437239"))
-	bookRepo.GetBookByAscendingOrder()
+	bookRepo.GetBookByID("1005")
 }

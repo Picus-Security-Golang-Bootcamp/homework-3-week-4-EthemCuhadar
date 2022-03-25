@@ -42,3 +42,21 @@ func (br *BookRepository) GetBookByID(id string) (*Book, error) {
 	}
 	return &book, nil
 }
+
+func (br *BookRepository) GetBookByAuthorName(authorName string) ([]Book, error) {
+	var books []Book
+	result := br.db.Where(&Book{AuthorName: authorName}).Find(&books)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, result.Error
+	}
+	return books, nil
+}
+
+func (br *BookRepository) GetBookByISBN(isbn string) (*Book, error) {
+	var book Book
+	result := br.db.Where(&Book{ISBN: isbn}).Find(&book)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, result.Error
+	}
+	return &book, nil
+}

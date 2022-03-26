@@ -2,7 +2,6 @@ package models
 
 import (
 	"errors"
-	"fmt"
 
 	"gorm.io/gorm"
 )
@@ -293,9 +292,6 @@ func (br *BookRepository) DeleteBookByStockCode(sc string) error {
 func (br *BookRepository) ListAllAuthors() []Author {
 	var authors []Author
 	br.db.Find(&authors)
-	for _, author := range authors {
-		fmt.Println(author.Name)
-	}
 	return authors
 }
 

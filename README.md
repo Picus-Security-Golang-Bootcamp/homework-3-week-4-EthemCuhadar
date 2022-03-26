@@ -2,13 +2,13 @@
 
 ## Table of Content
 
-1. [Scope]([GitHub - Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar: homework-3-week-4-EthemCuhadar created by GitHub Classroom](https://github.com/Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar#scope))
+1. [Scope](#scope)
 
-2. [Requirements]([GitHub - Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar: homework-3-week-4-EthemCuhadar created by GitHub Classroom](https://github.com/Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar#requirements))
+2. [Requirements](#requirements)
 
-3. [Usage]([GitHub - Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar: homework-3-week-4-EthemCuhadar created by GitHub Classroom](https://github.com/Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar#usage))
+3. [Usage](#usage)
 
-4. [Queries]([GitHub - Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar: homework-3-week-4-EthemCuhadar created by GitHub Classroom](https://github.com/Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar#queries))
+4. [Queries](#queries)
 
 ## Scope
 

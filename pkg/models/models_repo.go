@@ -271,3 +271,33 @@ func (br *BookRepository) DeleteBookByStockCode(sc string) error {
 // METHODS FOR AUTHOR MODEL
 
 // List Models
+
+func (br *BookRepository) ListAllAuthors() []Author {
+	var authors []Author
+	br.db.Find(&authors)
+	for _, author := range authors {
+		fmt.Println(author.Name)
+	}
+	return authors
+}
+
+func (br *BookRepository) ListAllAuthorsByAlphabeticOrder() ([]Author, error) {
+	var authors []Author
+	result := br.db.Order("Name").Find(&authors)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, result.Error
+	}
+	for _, book := range authors {
+		fmt.Println(book.Name)
+	}
+	return authors, nil
+}
+
+func (br *BookRepository) GetBookNumberOfAutherByName(name string) (int64, error) {
+	var count int64
+	result := br.db.Model(&Book{}).Where("author_name = ?", name).Count(&count)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return 0, result.Error
+	}
+	return count, nil
+}

@@ -40,4 +40,8 @@ func main() {
 	bookRepo.GetBookWithMinPrice()
 	bookRepo.GetBookWithMaxPrice()
 	bookRepo.GetBookWithPriceInterval(10.00, 15.00)
+
+	bookRepo.ListAllAuthors()
+	bookRepo.ListAllAuthorsByAlphabeticOrder()
+	fmt.Println(bookRepo.GetBookNumberOfAutherByName("J.R.R. Tolkein"))
 }

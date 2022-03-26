@@ -1,12 +1,24 @@
 # Homework 3 | Week 4
 
-----------------------------------------------
+
+
+## Table of Content
+
+* 1. [Scope]([GitHub - Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar: homework-3-week-4-EthemCuhadar created by GitHub Classroom](https://github.com/Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar#scope))
+  
+  2. [Requirements]([GitHub - Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar: homework-3-week-4-EthemCuhadar created by GitHub Classroom](https://github.com/Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar#requirements))
+  
+  3. [Usage]([GitHub - Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar: homework-3-week-4-EthemCuhadar created by GitHub Classroom](https://github.com/Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar#usage))
+  
+  4. [Queries]([GitHub - Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar: homework-3-week-4-EthemCuhadar created by GitHub Classroom](https://github.com/Picus-Security-Golang-Bootcamp/homework-3-week-4-EthemCuhadar#queries))
+
+
 
 ## Scope
 
 This is a project in which a Bookstore database is built in Go programming language. In this project database server is chosen as PostgreSQL which is supported dialects in object-relational mapping, [GORM](gorm.io). 
 
--------------------------------------------------------------
+
 
 ## Requirements
 
@@ -16,7 +28,7 @@ This is a project in which a Bookstore database is built in Go programming langu
 
 * PostgreSQL
 
--------------------------------------------------------
+
 
 ## Usage
 
@@ -24,7 +36,7 @@ This is a project in which a Bookstore database is built in Go programming langu
 go run main.go
 ```
 
-----------------------------------------------------
+## 
 
 ## Queries
 
@@ -80,7 +92,7 @@ All of the query functions in the program are listed below as an example. Necess
 
 * **GetBookNumberOfAutherByName**("*Miguel De Cervantes Saavedra*")
 
----------------------------------------------------------
+## 
 
 ## Licence
 

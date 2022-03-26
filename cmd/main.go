@@ -60,11 +60,11 @@ func main() {
 		AuthorName:  "Fyodor Dostoevsky",
 		Author:      &models.Author{Name: "Fyodor Dostoevsky", ID: "4593"},
 	}
-	bookRepo.Create(sampleBook)
+	bookRepo.Create(&sampleBook)
 	// Updated (price 15.33 -> 12.33)
 	sampleBook.Price = 12.33
-	bookRepo.Update(sampleBook)
-	bookRepo.Delete(sampleBook)
+	bookRepo.Update(&sampleBook)
+	bookRepo.Delete(&sampleBook)
 	bookRepo.DeleteBookByID("1009")
 	bookRepo.DeleteBookByName("The Brothers Karamazov")
 	bookRepo.DeleteBookByISBN("1559963278")

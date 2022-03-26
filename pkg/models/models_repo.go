@@ -247,7 +247,7 @@ func (br *BookRepository) GetBookWithPriceInterval(pMin, pMax int) ([]Book, erro
 }
 
 // Create creates and stores new book in the database.
-func (br *BookRepository) Create(book Book) error {
+func (br *BookRepository) Create(book *Book) error {
 	result := br.db.Create(book)
 	if result.Error != nil {
 		return result.Error
@@ -256,7 +256,7 @@ func (br *BookRepository) Create(book Book) error {
 }
 
 // Update updates and saves relative information in the database.
-func (br *BookRepository) Update(book Book) error {
+func (br *BookRepository) Update(book *Book) error {
 	result := br.db.Save(book)
 
 	if result.Error != nil {
@@ -266,7 +266,7 @@ func (br *BookRepository) Update(book Book) error {
 }
 
 // Delete simply deletes the book from database.
-func (br *BookRepository) Delete(book Book) error {
+func (br *BookRepository) Delete(book *Book) error {
 	result := br.db.Delete(book)
 
 	if result.Error != nil {

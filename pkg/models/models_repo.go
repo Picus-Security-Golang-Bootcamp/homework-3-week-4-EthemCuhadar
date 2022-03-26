@@ -293,6 +293,8 @@ func (br *BookRepository) ListAllAuthorsByAlphabeticOrder() ([]Author, error) {
 	return authors, nil
 }
 
+// Get Models
+
 func (br *BookRepository) GetBookNumberOfAutherByName(name string) (int64, error) {
 	var count int64
 	result := br.db.Model(&Book{}).Where("author_name = ?", name).Count(&count)

@@ -276,8 +276,8 @@ func (br *BookRepository) Delete(book Book) error {
 	return nil
 }
 
-// DeleteBookById deletes the book via its ID number from database.
-func (br *BookRepository) DeleteBookById(id string) error {
+// DeleteBookByID deletes the book via its ID number from database.
+func (br *BookRepository) DeleteBookByID(id string) error {
 	result := br.db.Delete(&Book{}, id)
 
 	if result.Error != nil {

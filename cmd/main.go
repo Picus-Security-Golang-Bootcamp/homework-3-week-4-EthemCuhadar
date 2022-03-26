@@ -25,23 +25,52 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	// fmt.Println(booklist)
-	fmt.Println("Book Count: ", len(booklist))
+
+	// bookRepo decleared
 	bookRepo := models.NewBookRepository(db)
 	bookRepo.Migrations()
 	bookRepo.InsertSampleData(booklist)
 
-	// fmt.Println(bookRepo.ListAllBooks())
-	// bookRepo.GetBookByID("1003")
-	// fmt.Println(bookRepo.GetBookByAuthorName("J.R.R. Tolkein"))
-	// fmt.Println(bookRepo.GetBookByISBN("9142437239"))
-	// bookRepo.GetBookByID("1005")
-	bookRepo.GetBookByMinPriceLimit(15.00)
-	bookRepo.GetBookWithMinPrice()
-	bookRepo.GetBookWithMaxPrice()
+	// Queries
+	bookRepo.ListAllBooks()
+	bookRepo.ListAllAuthorsByAlphabeticOrder()
+	bookRepo.ListBookByDescendingPriceOrder()
+	bookRepo.ListBookByAscendingPriceOrder()
+	bookRepo.ListBookByDescendingStockNumberOrder()
+	bookRepo.ListBookByAscendingStockNumberOrder()
+
+	bookRepo.GetBookByName("Don Quiote")
+	bookRepo.GetBookByID("1001")
+	bookRepo.GetBookByAuthorName("Miguel De Cervantes Saavedra")
+	bookRepo.GetBookByISBN("9142437239")
+	bookRepo.GetBookByMaxPriceLimit(15.00)
+	bookRepo.GetBookByMinPriceLimit(10.00)
 	bookRepo.GetBookWithPriceInterval(10.00, 15.00)
+	bookRepo.GetBookWithMaxPrice()
+	bookRepo.GetBookWithMinPrice()
+
+	sampleBook := models.Book{
+		ID:          "1009",
+		Name:        "The Brothers Karamazov",
+		PageNumber:  569,
+		StockNumber: 66,
+		Price:       15.33,
+		StockCode:   "362637",
+		ISBN:        "1559963278",
+		AuthorName:  "Fyodor Dostoevsky",
+		Author:      &models.Author{Name: "Fyodor Dostoevsky", ID: "4593"},
+	}
+	bookRepo.Create(sampleBook)
+	// Updated (price 15.33 -> 12.33)
+	sampleBook.Price = 12.33
+	bookRepo.Update(sampleBook)
+	bookRepo.Delete(sampleBook)
+	bookRepo.DeleteBookByID("1009")
+	bookRepo.DeleteBookByName("The Brothers Karamazov")
+	bookRepo.DeleteBookByISBN("1559963278")
+	bookRepo.DeleteBookByStockCode("362637")
 
 	bookRepo.ListAllAuthors()
 	bookRepo.ListAllAuthorsByAlphabeticOrder()
-	fmt.Println(bookRepo.GetBookNumberOfAutherByName("J.R.R. Tolkein"))
+	bookRepo.GetBookNumberOfAutherByName("Miguel De Cervantes Saavedra")
 }
